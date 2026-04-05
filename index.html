@@ -3,416 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engagement Party</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Engagement Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
-  margin: 0;
-  overflow: hidden;
-  font-family: 'Cormorant Garamond', serif;
-  background:
-    radial-gradient(circle at top, #fffdf8 0%, #f8f2e8 45%, #efe4d2 100%);
-  color: #4b3920;
+    margin: 0;
+    background: linear-gradient(180deg, #fdf8f2, #f3ebe1);
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* background glow */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.7), transparent 25%),
-    radial-gradient(circle at 85% 20%, rgba(255,240,200,0.35), transparent 20%),
-    radial-gradient(circle at 50% 85%, rgba(255,255,255,0.25), transparent 30%);
-  z-index: 0;
-  pointer-events: none;
+/* Scene */
+.scene {
+    perspective: 2000px;
 }
 
-/* intro */
-.intro {
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, rgba(255,252,247,0.96), rgba(245,236,219,0.96));
-  transition: opacity 0.8s ease;
-}
-
-.intro-box {
-  text-align: center;
-  padding: 34px 28px;
-  border-radius: 28px;
-  background: rgba(255,255,255,0.82);
-  border: 1px solid rgba(197,155,74,0.25);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.08);
-  min-width: 280px;
-}
-
-.intro-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 58px;
-  color: #b78b2b;
-  margin: 0;
-}
-
-.intro-sub {
-  margin-top: 8px;
-  font-size: 20px;
-  letter-spacing: 2px;
-  color: #8f7240;
-}
-
-.intro-btn {
-  margin-top: 22px;
-  padding: 13px 30px;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #d7b25a, #b98d2c);
-  color: white;
-  font-size: 17px;
-  font-family: 'Cormorant Garamond', serif;
-  letter-spacing: 1px;
-  box-shadow: 0 8px 20px rgba(183,139,43,0.25);
-}
-
-/* stage */
-.stage {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
-/* curtains */
-.curtain {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 8;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 18%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.08) 82%, rgba(255,255,255,0.16)),
-    linear-gradient(180deg, #d4af37, #bf953f, #a87a1b);
-  box-shadow: inset -14px 0 34px rgba(0,0,0,0.12);
-}
-
-.curtain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.15) 0px,
-      rgba(255,255,255,0.15) 20px,
-      rgba(0,0,0,0.03) 20px,
-      rgba(0,0,0,0.03) 38px
-    );
-  mix-blend-mode: soft-light;
-}
-
-.left {
-  left: 0;
-  border-right: 1px solid rgba(255,255,255,0.26);
-}
-
-.right {
-  right: 0;
-  border-left: 1px solid rgba(255,255,255,0.26);
-}
-
-.shake .left {
-  animation: leftShake 0.45s ease-in-out 2;
-}
-
-.shake .right {
-  animation: rightShake 0.45s ease-in-out 2;
-}
-
-.open .left {
-  animation: openLeft 2.2s ease forwards;
-}
-
-.open .right {
-  animation: openRight 2.2s ease forwards;
-}
-
-@keyframes leftShake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(4px); }
-}
-
-@keyframes rightShake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(5px); }
-  75% { transform: translateX(-4px); }
-}
-
-@keyframes openLeft {
-  to { transform: translateX(-102%); }
-}
-
-@keyframes openRight {
-  to { transform: translateX(102%); }
-}
-
-/* content */
-.content {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  z-index: 2;
-  padding: 24px;
-}
-
-.show {
-  animation: fadeIn 1.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
+/* Card */
 .card {
-  max-width: 820px;
-  background: rgba(255,255,255,0.84);
-  border: 1px solid rgba(192,150,67,0.28);
-  border-radius: 34px;
-  padding: 50px 34px 44px;
-  box-shadow: 0 18px 50px rgba(0,0,0,0.10);
-  position: relative;
-  overflow: hidden;
+    width: 320px;
+    height: 480px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    cursor: pointer;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 10px;
-  border: 1px solid rgba(201,162,82,0.24);
-  border-radius: 26px;
-  pointer-events: none;
+/* Open animation */
+.card.open {
+    transform: rotateY(-160deg);
 }
 
-.card h1 {
-  margin: 0;
-  font-family: 'Great Vibes', cursive;
-  font-size: 68px;
-  color: #bc8d2c;
-  line-height: 1.1;
+/* Cover */
+.cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #d4af37, #b8962e);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
 }
 
-.names {
-  margin-top: 10px;
-  font-family: 'Great Vibes', cursive;
-  font-size: 52px;
-  color: #8e6a23;
+.cover-text h2 {
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 1px;
 }
 
+.cover-text p {
+    margin-top: 15px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Inside */
+.inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #fffdf8;
+    padding: 30px;
+    box-sizing: border-box;
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+    border-radius: 14px;
+    box-shadow: inset 0 0 25px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+/* Titles */
+.inside h1 {
+    font-size: 20px;
+    color: #a67c2d;
+    margin-top: 10px;
+}
+
+.inside h2 {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.inside h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #b8962e;
+    margin-bottom: 10px;
+}
+
+/* Rings */
+.rings {
+    font-size: 34px;
+    margin: 15px 0;
+}
+
+/* Message */
 .message {
-  margin-top: 18px;
-  font-size: 28px;
-  line-height: 1.45;
-  color: #5e4a2b;
+    font-size: 20px;
+    line-height: 1.8;
+    color: #6e5a2b;
+    max-width: 260px;
+    margin: 30px auto;
+    letter-spacing: 0.4px;
 }
 
-.date, .location {
-  font-size: 28px;
-  color: #9b7730;
+.message::before,
+.message::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 40px;
+    background: #c9a252;
+    margin: 15px auto;
 }
 
-.date {
-  margin-top: 18px;
+/* Smooth open text fade */
+.inside-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.8s ease;
 }
 
-.location {
-  margin-top: 6px;
-}
-
-/* royal lines */
-.line {
-  width: 120px;
-  height: 2px;
-  margin: 18px auto;
-  background: linear-gradient(90deg, transparent, #cda34c, transparent);
-}
-
-/* rings */
-.rings-wrap {
-  margin: 18px auto 10px;
-  height: 90px;
-  position: relative;
-  width: 170px;
-}
-
-.ring {
-  position: absolute;
-  top: 14px;
-  width: 64px;
-  height: 64px;
-  border: 5px solid #d4af37;
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 10px rgba(255,255,255,0.4),
-    0 0 14px rgba(212,175,55,0.25);
-  opacity: 0;
-}
-
-.ring.left-ring {
-  left: 34px;
-  transform: translateX(-30px) rotate(-18deg) scale(0.8);
-}
-
-.ring.right-ring {
-  right: 34px;
-  transform: translateX(30px) rotate(18deg) scale(0.8);
-}
-
-.ring::after {
-  content: "";
-  position: absolute;
-  top: -11px;
-  left: 22px;
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle, #fff6c7 0%, #f2d36d 45%, #caa23e 100%);
-  transform: rotate(45deg);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(255,240,170,0.8);
-}
-
-.show-rings .left-ring {
-  animation: ringLeftIn 1.4s ease forwards;
-}
-
-.show-rings .right-ring {
-  animation: ringRightIn 1.4s ease forwards;
-}
-
-@keyframes ringLeftIn {
-  0% { opacity: 0; transform: translateX(-30px) rotate(-18deg) scale(0.7); }
-  100% { opacity: 1; transform: translateX(10px) rotate(-14deg) scale(1); }
-}
-
-@keyframes ringRightIn {
-  0% { opacity: 0; transform: translateX(30px) rotate(18deg) scale(0.7); }
-  100% { opacity: 1; transform: translateX(-10px) rotate(14deg) scale(1); }
-}
-
-/* sparkles */
-.sparkle {
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255,223,130,0.8);
-  box-shadow: 0 0 12px rgba(255,223,130,0.9);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.show .sparkle {
-  animation: floatSparkle 6s linear infinite;
-}
-
-@keyframes floatSparkle {
-  0% { transform: translateY(18px); opacity: 0; }
-  20% { opacity: 1; }
-  100% { transform: translateY(-130px); opacity: 0; }
+.card.open .inside-content {
+    opacity: 1;
+    transform: translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<div class="intro" id="intro" onclick="startInvite()">
-  <div class="intro-box">
-    <h1 class="intro-title">Welcome</h1>
-    <div class="intro-sub">TAP TO ENTER</div>
-    <button class="intro-btn">Open Invitation</button>
-  </div>
-</div>
+<div class="scene">
+    <div class="card" onclick="this.classList.toggle('open')">
 
-<div class="stage" id="stage">
-  <div class="curtain left"></div>
-  <div class="curtain right"></div>
+        <!-- COVER -->
+        <div class="cover">
+            <div class="cover-text">
+                <h2>Wedding Invitation</h2>
+                <p>Tap to Open</p>
+            </div>
+        </div>
 
-  <div class="content" id="content">
-    <div class="card" id="card">
-      <h1>Welcome to Our Engagement</h1>
-      <div class="names">Hiwa &amp; Lolav</div>
+        <!-- INSIDE -->
+        <div class="inside">
+            <div class="inside-content">
+                <h1>Welcome to</h1>
+                <h2>Our Engagement</h2>
+                <h3>Hiwa & Lolav</h3>
 
-      <div class="rings-wrap" id="ringsWrap">
-        <div class="ring left-ring"></div>
-        <div class="ring right-ring"></div>
-      </div>
+                <div class="rings">💍💍</div>
 
-      <div class="line"></div>
+                <p class="message">
+                We’re so happy to celebrate our special day with you.<br><br>
+                Your presence means everything to us.
+                </p>
+            </div>
+        </div>
 
-      <div class="message">
-        We are truly happy you could attend our special day.<br>
-        Your presence means a lot to us and makes this moment even more beautiful.<br><br>
-        We hope you enjoy every moment with us.
-      </div>
-
-      <div class="line"></div>
-
-      <div class="date">24 / 04 / 2026</div>
-      <div class="location">Malta Restaurant</div>
     </div>
-  </div>
 </div>
-
-<script>
-function startInvite() {
-  const intro = document.getElementById('intro');
-  const stage = document.getElementById('stage');
-  const content = document.getElementById('content');
-  const ringsWrap = document.getElementById('ringsWrap');
-
-  intro.style.pointerEvents = 'none';
-  stage.classList.add('shake');
-
-  setTimeout(() => {
-    intro.style.opacity = '0';
-  }, 300);
-
-  setTimeout(() => {
-    intro.style.display = 'none';
-    stage.classList.remove('shake');
-    stage.classList.add('open');
-  }, 900);
-
-  setTimeout(() => {
-    content.classList.add('show');
-    ringsWrap.classList.add('show-rings');
-    createSparkles();
-  }, 2900);
-}
-
-function createSparkles() {
-  for (let i = 0; i < 16; i++) {
-    const s = document.createElement('div');
-    s.className = 'sparkle';
-    s.style.left = (10 + Math.random() * 80) + 'vw';
-    s.style.top = (55 + Math.random() * 25) + 'vh';
-    s.style.animationDelay = (Math.random() * 4) + 's';
-    s.style.animationDuration = (4 + Math.random() * 3) + 's';
-    document.body.appendChild(s);
-    s.style.opacity = '1';
-  }
-}
-</script>
 
 </body>
 </html>
