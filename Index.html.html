@@ -5,276 +5,165 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engagement Party</title>
 
+<!-- Elegant cursive font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;500&display=swap" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
   overflow: hidden;
-  font-family: 'Georgia', serif;
-  background: radial-gradient(circle at center, #fffdf8, #f8f4ea);
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(180deg, #fffdf8, #f5efe4);
 }
 
-/* intro screen */
+/* INTRO SCREEN */
 .intro {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, #fffefb, #f8f4ea);
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 252, 245, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
-  cursor: pointer;
-}
-
-.intro-box {
-  text-align: center;
-  background: rgba(255,255,255,0.88);
-  padding: 34px 28px;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-  border: 1px solid rgba(212,175,55,0.25);
+  z-index: 10;
+  flex-direction: column;
 }
 
 .intro h1 {
-  margin: 0;
-  font-size: 2rem;
-  color: #b8962e;
-  letter-spacing: 2px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: #bfa15a;
+  margin-bottom: 20px;
 }
 
-.intro p {
-  margin-top: 10px;
-  color: #7b6b45;
-  font-size: 1rem;
+.intro button {
+  padding: 14px 34px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #d4af37, #bfa15a);
+  color: white;
+  cursor: pointer;
 }
 
-/* curtain */
-.stage {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
-
+/* CURTAIN */
 .curtain {
   position: absolute;
   top: 0;
   width: 50%;
   height: 100%;
-  z-index: 3;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 20%, rgba(0,0,0,0.06) 50%, rgba(255,255,255,0.08) 80%, rgba(255,255,255,0.15)),
-    linear-gradient(135deg, #c89f2d, #f4e2a0, #b88a1c);
-  background-size: 100% 100%, 100% 100%;
-  box-shadow: inset -14px 0 30px rgba(0,0,0,0.12);
+  background: linear-gradient(180deg, #d4af37, #bfa15a, #a8893f);
+  transition: transform 1.8s ease-in-out;
+  z-index: 5;
 }
 
 .left {
   left: 0;
-  border-right: 1px solid rgba(255,255,255,0.25);
 }
 
 .right {
   right: 0;
-  border-left: 1px solid rgba(255,255,255,0.25);
 }
 
-.curtain::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.14) 0px,
-      rgba(255,255,255,0.14) 18px,
-      rgba(0,0,0,0.03) 18px,
-      rgba(0,0,0,0.03) 36px
-    );
-  mix-blend-mode: soft-light;
-}
-
+/* OPEN ANIMATION */
 .open .left {
-  animation: openLeft 2.4s ease forwards;
+  transform: translateX(-100%);
 }
-
 .open .right {
-  animation: openRight 2.4s ease forwards;
+  transform: translateX(100%);
 }
 
-.shake .left {
-  animation: leftShake 0.45s ease-in-out 2;
-}
-
-.shake .right {
-  animation: rightShake 0.45s ease-in-out 2;
-}
-
-@keyframes leftShake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(-6px); }
-  75% { transform: translateX(4px); }
-}
-
-@keyframes rightShake {
-  0%,100% { transform: translateX(0); }
-  25% { transform: translateX(6px); }
-  75% { transform: translateX(-4px); }
-}
-
-@keyframes openLeft {
-  to { transform: translateX(-102%); }
-}
-
-@keyframes openRight {
-  to { transform: translateX(102%); }
-}
-
-/* content */
+/* CONTENT */
 .content {
   position: absolute;
-  inset: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.9);
+  padding: 50px;
+  border-radius: 20px;
   text-align: center;
-  opacity: 0;
-  z-index: 1;
-  padding: 20px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.08);
 }
 
-.show {
-  animation: fadeIn 1.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity: 1; }
-}
-
-.box {
-  max-width: 760px;
-  background: rgba(255,255,255,0.90);
-  padding: 42px 30px;
-  border-radius: 28px;
-  box-shadow: 0 14px 45px rgba(0,0,0,0.10);
-  border: 1px solid rgba(212,175,55,0.25);
-}
-
-.box h1 {
+/* BIG CURSIVE TITLE */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 64px;
+  color: #bfa15a;
   margin: 0;
-  font-size: 2.2rem;
-  color: #4a4030;
 }
 
-.box h2 {
-  margin: 14px 0 0 0;
-  font-size: 1.7rem;
-  color: #8f7440;
-  font-weight: normal;
+.names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 46px;
+  margin: 20px 0;
 }
 
-.message {
-  margin-top: 20px;
-  color: #685b46;
-  line-height: 1.8;
-  font-size: 1.05rem;
+p {
+  font-size: 18px;
+  margin: 10px 0;
 }
 
-.date {
-  margin-top: 18px;
-  color: #9e8550;
-  font-size: 1.15rem;
-  letter-spacing: 1px;
-}
-
-.location {
-  margin-top: 10px;
-  color: #b8962e;
-  font-size: 1.15rem;
-  font-weight: bold;
-}
-
+/* sparkles */
 .sparkle {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
+  background: gold;
   border-radius: 50%;
-  background: rgba(255, 223, 130, 0.7);
-  box-shadow: 0 0 12px rgba(255, 223, 130, 0.8);
-  opacity: 0;
+  opacity: 0.7;
+  animation: float 6s infinite;
 }
 
-.show .sparkle {
-  animation: floatUp 6s linear infinite;
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(20px); opacity: 0; }
-  15% { opacity: 1; }
-  100% { transform: translateY(-120px); opacity: 0; }
-}
 </style>
 </head>
 
 <body>
 
-<div class="intro" id="intro" onclick="startInvite()">
-  <div class="intro-box">
-    <h1>Tap to Open</h1>
-    <p>Your invitation awaits</p>
-  </div>
+<div class="intro" id="intro">
+  <h1>Welcome</h1>
+  <button onclick="start()">Tap to Enter</button>
 </div>
 
-<div class="stage" id="stage">
-  <div class="curtain left"></div>
-  <div class="curtain right"></div>
+<div class="curtain left"></div>
+<div class="curtain right"></div>
 
-  <div class="content" id="content">
-    <div class="box">
-      <h1>Welcome to our Engagement Party</h1>
-      <h2>Hiwa &amp; Lole</h2>
-
-      <div class="message">
-        We are truly happy you could attend our special day.<br>
-        Your presence means a lot to us and makes this moment even more beautiful.<br><br>
-        We hope you enjoy and celebrate with us.
-      </div>
-
-      <div class="date">24 / 04 / 2026</div>
-      <div class="location">Malta Restaurant</div>
-    </div>
+<div class="content">
+  <div class="card">
+    <h1>Welcome to Our Engagement</h1>
+    <div class="names">Hiwa & Lolav</div>
+    <p>We are truly happy you could attend our special day</p>
+    <p>We hope you enjoy every moment with us</p>
+    <p><strong>Date:</strong> 24/04/2026</p>
+    <p><strong>Location:</strong> Malta Restaurant</p>
   </div>
 </div>
 
 <script>
-function startInvite() {
-  const intro = document.getElementById('intro');
-  const stage = document.getElementById('stage');
-  const content = document.getElementById('content');
+function start() {
+  document.getElementById("intro").style.display = "none";
+  document.body.classList.add("open");
 
-  intro.style.pointerEvents = 'none';
-  stage.classList.add('shake');
-
-  setTimeout(() => {
-    intro.style.display = 'none';
-    stage.classList.remove('shake');
-    stage.classList.add('open');
-  }, 900);
-
-  setTimeout(() => {
-    content.classList.add('show');
-    createSparkles();
-  }, 3000);
-}
-
-function createSparkles() {
-  for (let i = 0; i < 18; i++) {
-    const s = document.createElement('div');
-    s.className = 'sparkle';
-    s.style.left = (10 + Math.random() * 80) + 'vw';
-    s.style.top = (55 + Math.random() * 25) + 'vh';
-    s.style.animationDelay = (Math.random() * 4) + 's';
-    s.style.animationDuration = (4 + Math.random() * 3) + 's';
+  // sparkles
+  for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    s.style.animationDuration=(3+Math.random()*3)+"s";
     document.body.appendChild(s);
-    s.style.opacity = '1';
   }
 }
 </script>
