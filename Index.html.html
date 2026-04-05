@@ -10,11 +10,45 @@ body {
   margin: 0;
   overflow: hidden;
   font-family: 'Georgia', serif;
-  background: radial-gradient(circle at center, #ffffff, #f7f7f7);
+  background: radial-gradient(circle at center, #fffdf8, #f8f4ea);
 }
 
-/* gold elegant curtain */
-.container {
+/* intro screen */
+.intro {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #fffefb, #f8f4ea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.intro-box {
+  text-align: center;
+  background: rgba(255,255,255,0.88);
+  padding: 34px 28px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+  border: 1px solid rgba(212,175,55,0.25);
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #b8962e;
+  letter-spacing: 2px;
+}
+
+.intro p {
+  margin-top: 10px;
+  color: #7b6b45;
+  font-size: 1rem;
+}
+
+/* curtain */
+.stage {
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -25,125 +59,223 @@ body {
   top: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(135deg, #d4af37, #f5e6a8, #c9a227);
-  box-shadow: inset -20px 0 40px rgba(0,0,0,0.15);
-  z-index: 2;
-  animation: openCurtain 3s ease forwards;
+  z-index: 3;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02) 20%, rgba(0,0,0,0.06) 50%, rgba(255,255,255,0.08) 80%, rgba(255,255,255,0.15)),
+    linear-gradient(135deg, #c89f2d, #f4e2a0, #b88a1c);
+  background-size: 100% 100%, 100% 100%;
+  box-shadow: inset -14px 0 30px rgba(0,0,0,0.12);
 }
 
-.left { left: 0; }
-.right { right: 0; }
+.left {
+  left: 0;
+  border-right: 1px solid rgba(255,255,255,0.25);
+}
 
-@keyframes openCurtain {
-  0% { width: 50%; }
-  100% { width: 0%; }
+.right {
+  right: 0;
+  border-left: 1px solid rgba(255,255,255,0.25);
+}
+
+.curtain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.14) 0px,
+      rgba(255,255,255,0.14) 18px,
+      rgba(0,0,0,0.03) 18px,
+      rgba(0,0,0,0.03) 36px
+    );
+  mix-blend-mode: soft-light;
+}
+
+.open .left {
+  animation: openLeft 2.4s ease forwards;
+}
+
+.open .right {
+  animation: openRight 2.4s ease forwards;
+}
+
+.shake .left {
+  animation: leftShake 0.45s ease-in-out 2;
+}
+
+.shake .right {
+  animation: rightShake 0.45s ease-in-out 2;
+}
+
+@keyframes leftShake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(4px); }
+}
+
+@keyframes rightShake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(6px); }
+  75% { transform: translateX(-4px); }
+}
+
+@keyframes openLeft {
+  to { transform: translateX(-102%); }
+}
+
+@keyframes openRight {
+  to { transform: translateX(102%); }
 }
 
 /* content */
 .content {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  opacity: 0;
   z-index: 1;
+  padding: 20px;
 }
 
-.text-box {
-  opacity: 0;
-  animation: fadeIn 2s ease 2.5s forwards;
-  background: rgba(255,255,255,0.9);
-  padding: 50px 70px;
-  border-radius: 25px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+.show {
+  animation: fadeIn 1.8s ease forwards;
 }
 
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 
-h1 {
-  font-size: 3em;
-  color: #444;
+.box {
+  max-width: 760px;
+  background: rgba(255,255,255,0.90);
+  padding: 42px 30px;
+  border-radius: 28px;
+  box-shadow: 0 14px 45px rgba(0,0,0,0.10);
+  border: 1px solid rgba(212,175,55,0.25);
 }
 
-h2 {
-  font-size: 2em;
-  margin-top: 15px;
-  color: #777;
+.box h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #4a4030;
 }
 
-p {
+.box h2 {
+  margin: 14px 0 0 0;
+  font-size: 1.7rem;
+  color: #8f7440;
+  font-weight: normal;
+}
+
+.message {
   margin-top: 20px;
-  font-size: 1.2em;
-  color: #666;
-  line-height: 1.6;
+  color: #685b46;
+  line-height: 1.8;
+  font-size: 1.05rem;
 }
 
 .date {
-  margin-top: 20px;
-  font-size: 1.3em;
-  color: #999;
+  margin-top: 18px;
+  color: #9e8550;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
 }
 
 .location {
   margin-top: 10px;
-  font-size: 1.2em;
   color: #b8962e;
+  font-size: 1.15rem;
   font-weight: bold;
 }
 
-/* floating particles */
-.particle {
+.sparkle {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: gold;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  opacity: 0.5;
-  animation: float 10s infinite linear;
+  background: rgba(255, 223, 130, 0.7);
+  box-shadow: 0 0 12px rgba(255, 223, 130, 0.8);
+  opacity: 0;
 }
 
-@keyframes float {
-  from { transform: translateY(100vh); }
-  to { transform: translateY(-10vh); }
+.show .sparkle {
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(20px); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translateY(-120px); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="intro" id="intro" onclick="startInvite()">
+  <div class="intro-box">
+    <h1>Tap to Open</h1>
+    <p>Your invitation awaits</p>
+  </div>
+</div>
 
+<div class="stage" id="stage">
   <div class="curtain left"></div>
   <div class="curtain right"></div>
 
-  <div class="content">
-    <div class="text-box">
+  <div class="content" id="content">
+    <div class="box">
       <h1>Welcome to our Engagement Party</h1>
-      <h2>Hiwa & Lole</h2>
+      <h2>Hiwa &amp; Lole</h2>
 
-      <p>We are truly happy you could attend our special day.<br>
-      Your presence means a lot to us and makes this moment even more beautiful.</p>
-
-      <p>We hope you enjoy and celebrate with us 🤍</p>
+      <div class="message">
+        We are truly happy you could attend our special day.<br>
+        Your presence means a lot to us and makes this moment even more beautiful.<br><br>
+        We hope you enjoy and celebrate with us.
+      </div>
 
       <div class="date">24 / 04 / 2026</div>
       <div class="location">Malta Restaurant</div>
     </div>
   </div>
-
 </div>
 
 <script>
-for(let i=0;i<30;i++){
-  let p=document.createElement('div');
-  p.className='particle';
-  p.style.left=Math.random()*100+'vw';
-  p.style.animationDuration=(5+Math.random()*10)+'s';
-  document.body.appendChild(p);
+function startInvite() {
+  const intro = document.getElementById('intro');
+  const stage = document.getElementById('stage');
+  const content = document.getElementById('content');
+
+  intro.style.pointerEvents = 'none';
+  stage.classList.add('shake');
+
+  setTimeout(() => {
+    intro.style.display = 'none';
+    stage.classList.remove('shake');
+    stage.classList.add('open');
+  }, 900);
+
+  setTimeout(() => {
+    content.classList.add('show');
+    createSparkles();
+  }, 3000);
+}
+
+function createSparkles() {
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('div');
+    s.className = 'sparkle';
+    s.style.left = (10 + Math.random() * 80) + 'vw';
+    s.style.top = (55 + Math.random() * 25) + 'vh';
+    s.style.animationDelay = (Math.random() * 4) + 's';
+    s.style.animationDuration = (4 + Math.random() * 3) + 's';
+    document.body.appendChild(s);
+    s.style.opacity = '1';
+  }
 }
 </script>
 
