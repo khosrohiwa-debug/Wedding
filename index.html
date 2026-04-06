@@ -3,174 +3,170 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engagement Invitation</title>
+<title>Engagement Party</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<!-- Elegant cursive font -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;500&display=swap" rel="stylesheet">
 
 <style>
 body {
-    margin: 0;
-    background: linear-gradient(180deg, #fdf8f2, #f3ebe1);
-    font-family: 'Playfair Display', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Playfair Display', serif;
+  background: linear-gradient(180deg, #fffdf8, #f5efe4);
 }
 
-/* Scene */
-.scene {
-    perspective: 2000px;
+/* INTRO SCREEN */
+.intro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 252, 245, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-direction: column;
 }
 
-/* Card */
+.intro h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: #bfa15a;
+  margin-bottom: 20px;
+}
+
+.intro button {
+  padding: 14px 34px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #d4af37, #bfa15a);
+  color: white;
+  cursor: pointer;
+}
+
+/* CURTAIN */
+.curtain {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(180deg, #d4af37, #bfa15a, #a8893f);
+  transition: transform 1.8s ease-in-out;
+  z-index: 5;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+/* OPEN ANIMATION */
+.open .left {
+  transform: translateX(-100%);
+}
+.open .right {
+  transform: translateX(100%);
+}
+
+/* CONTENT */
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .card {
-    width: 320px;
-    height: 480px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 1s ease;
-    cursor: pointer;
+  background: rgba(255,255,255,0.9);
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0,0,0,0.08);
 }
 
-/* Open animation */
-.card.open {
-    transform: rotateY(-160deg);
+/* BIG CURSIVE TITLE */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 64px;
+  color: #bfa15a;
+  margin: 0;
 }
 
-/* Cover */
-.cover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #d4af37, #b8962e);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    backface-visibility: hidden;
-    border-radius: 14px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+.names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 46px;
+  margin: 20px 0;
 }
 
-.cover-text h2 {
-    font-size: 28px;
-    font-weight: normal;
-    letter-spacing: 1px;
+p {
+  font-size: 18px;
+  margin: 10px 0;
 }
 
-.cover-text p {
-    margin-top: 15px;
-    font-size: 14px;
-    opacity: 0.8;
+/* sparkles */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: gold;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: float 6s infinite;
 }
 
-/* Inside */
-.inside {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #fffdf8;
-    padding: 30px;
-    box-sizing: border-box;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    border-radius: 14px;
-    box-shadow: inset 0 0 25px rgba(0,0,0,0.05);
-    text-align: center;
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-200px); opacity: 0; }
 }
 
-/* Titles */
-.inside h1 {
-    font-size: 20px;
-    color: #a67c2d;
-    margin-top: 10px;
-}
-
-.inside h2 {
-    font-size: 28px;
-    margin: 10px 0;
-}
-
-.inside h3 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 36px;
-    color: #b8962e;
-    margin-bottom: 10px;
-}
-
-/* Rings */
-.rings {
-    font-size: 34px;
-    margin: 15px 0;
-}
-
-/* Message */
-.message {
-    font-size: 20px;
-    line-height: 1.8;
-    color: #6e5a2b;
-    max-width: 260px;
-    margin: 30px auto;
-    letter-spacing: 0.4px;
-}
-
-.message::before,
-.message::after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 40px;
-    background: #c9a252;
-    margin: 15px auto;
-}
-
-/* Smooth open text fade */
-.inside-content {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: 0.8s ease;
-}
-
-.card.open .inside-content {
-    opacity: 1;
-    transform: translateY(0);
-}
 </style>
 </head>
 
 <body>
 
-<div class="scene">
-    <div class="card" onclick="this.classList.toggle('open')">
-
-        <!-- COVER -->
-        <div class="cover">
-            <div class="cover-text">
-                <h2>Wedding Invitation</h2>
-                <p>Tap to Open</p>
-            </div>
-        </div>
-
-        <!-- INSIDE -->
-        <div class="inside">
-            <div class="inside-content">
-                <h1>Welcome to</h1>
-                <h2>Our Engagement</h2>
-                <h3>Hiwa & Lolav</h3>
-
-                <div class="rings">💍💍</div>
-
-                <p class="message">
-                We’re so happy to celebrate our special day with you.<br><br>
-                Your presence means everything to us.
-                </p>
-            </div>
-        </div>
-
-    </div>
+<div class="intro" id="intro">
+  <h1>Welcome</h1>
+  <button onclick="start()">Tap to Enter</button>
 </div>
+
+<div class="curtain left"></div>
+<div class="curtain right"></div>
+
+<div class="content">
+  <div class="card">
+    <h1>Welcome to Our Engagement</h1>
+    <div class="names">Hiwa & Lolav</div>
+    <p>We are truly happy you could attend our special day</p>
+    <p>We hope you enjoy every moment with us</p>
+    <p><strong>Date:</strong> 24/04/2026</p>
+    <p><strong>Location:</strong> Malta Restaurant</p>
+  </div>
+</div>
+
+<script>
+function start() {
+  document.getElementById("intro").style.display = "none";
+  document.body.classList.add("open");
+
+  // sparkles
+  for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"%";
+    s.style.top=Math.random()*100+"%";
+    s.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(s);
+  }
+}
+</script>
 
 </body>
 </html>
