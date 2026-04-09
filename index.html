@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -15,28 +15,22 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
-    }
-
     body {
+      margin: 0;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       overflow: hidden;
       padding: 20px;
-      background:
-        radial-gradient(circle at top, #f8f5ef 0%, #efe8dc 45%, #e7dece 100%);
+      background: linear-gradient(180deg, #f7f3eb 0%, #ece4d7 100%);
       font-family: 'Cormorant Garamond', serif;
     }
 
     .scene {
       position: relative;
       width: min(92vw, 430px);
-      height: min(88vh, 760px);
+      height: min(88vh, 780px);
     }
 
     .stage {
@@ -48,18 +42,19 @@
     .card {
       position: absolute;
       left: 50%;
-      bottom: 165px;
-      width: 84%;
+      bottom: 170px;
+      width: 82%;
       height: 520px;
-      transform: translateX(-50%) translateY(170px);
+      transform: translateX(-50%) translateY(130px);
       opacity: 0;
+      pointer-events: none;
       transition:
-        transform 1.35s cubic-bezier(.22,1,.22,1),
-        opacity 0.55s ease;
-      background: linear-gradient(180deg, #fffefb 0%, #f7f1e7 100%);
+        transform 1.25s cubic-bezier(.22,1,.22,1),
+        opacity 0.45s ease;
+      background: linear-gradient(180deg, #fffefb 0%, #f8f2e9 100%);
       border-radius: 16px;
-      border: 1px solid rgba(196, 167, 126, 0.2);
-      box-shadow: 0 28px 55px rgba(77, 55, 30, 0.12);
+      border: 1px solid rgba(201, 173, 133, 0.22);
+      box-shadow: 0 24px 55px rgba(80, 58, 30, 0.12);
       overflow: hidden;
       z-index: 1;
     }
@@ -68,21 +63,18 @@
       position: relative;
       width: 100%;
       height: 100%;
-      padding: 54px 26px 34px;
+      padding: 54px 24px 34px;
       text-align: center;
       color: #8b6843;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 35%),
-        linear-gradient(180deg, #fffefb 0%, #f7f1e7 100%);
     }
 
     .ornament {
       position: absolute;
-      top: 18px;
+      top: 16px;
       left: 50%;
       transform: translateX(-50%);
       width: 90%;
-      height: 145px;
+      height: 150px;
       pointer-events: none;
       opacity: 0.95;
     }
@@ -91,20 +83,20 @@
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      border-top: 1.3px solid rgba(191, 158, 112, 0.92);
+      border-top: 1.2px solid rgba(192, 161, 117, 0.95);
       border-radius: 50%;
     }
 
-    .arc.a1 { top: 0; width: 95%; height: 54px; }
-    .arc.a2 { top: 8px; width: 82%; height: 72px; }
-    .arc.a3 { top: 16px; width: 68%; height: 88px; }
-    .arc.a4 { top: 24px; width: 54%; height: 102px; }
+    .arc.a1 { top: 0; width: 96%; height: 52px; }
+    .arc.a2 { top: 8px; width: 82%; height: 70px; }
+    .arc.a3 { top: 16px; width: 68%; height: 86px; }
+    .arc.a4 { top: 24px; width: 54%; height: 100px; }
 
     .drop {
       position: absolute;
       top: 10px;
       width: 1px;
-      background: rgba(191, 158, 112, 0.88);
+      background: rgba(192, 161, 117, 0.88);
     }
 
     .drop::after {
@@ -116,58 +108,7 @@
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: rgba(191, 158, 112, 0.96);
-    }
-
-    .chandelier {
-      position: absolute;
-      top: 34px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 105px;
-      height: 108px;
-      pointer-events: none;
-    }
-
-    .chain {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-      width: 1px;
-      height: 18px;
-      background: rgba(191, 158, 112, 0.95);
-    }
-
-    .ring1, .ring2, .ring3 {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 1.2px solid rgba(191, 158, 112, 0.95);
-      border-radius: 50%;
-    }
-
-    .ring1 { top: 16px; width: 44px; height: 22px; }
-    .ring2 { top: 31px; width: 68px; height: 28px; }
-    .ring3 { top: 52px; width: 88px; height: 34px; }
-
-    .crystal {
-      position: absolute;
-      top: 57px;
-      width: 1px;
-      background: rgba(191, 158, 112, 0.85);
-    }
-
-    .crystal::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -10px;
-      transform: translateX(-50%);
-      width: 5px;
-      height: 10px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(203,177,136,0.92));
-      clip-path: polygon(50% 0%, 100% 42%, 70% 100%, 30% 100%, 0% 42%);
+      background: rgba(192, 161, 117, 0.96);
     }
 
     .title {
@@ -186,15 +127,15 @@
     }
 
     .date {
-      margin-top: 14px;
+      margin-top: 16px;
       font-size: 21px;
-      letter-spacing: 1.8px;
+      letter-spacing: 2px;
       color: #ab8860;
     }
 
     .message {
       margin: 30px auto 0;
-      max-width: 84%;
+      max-width: 86%;
       font-size: 24px;
       line-height: 1.35;
       color: #9a7753;
@@ -204,73 +145,72 @@
     .envelope {
       position: absolute;
       left: 50%;
-      bottom: 135px;
+      bottom: 170px;
       width: 100%;
       max-width: 390px;
-      height: 250px;
+      height: 255px;
       transform: translateX(-50%);
       z-index: 5;
-      filter: drop-shadow(0 22px 46px rgba(78, 57, 30, 0.14));
+      filter: drop-shadow(0 18px 42px rgba(78, 57, 30, 0.14));
     }
 
-    .envelope-base {
+    .env-base {
       position: absolute;
       inset: 0;
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
-      background: linear-gradient(180deg, #fffefb 0%, #f2eadc 100%);
-      border: 1px solid rgba(189, 160, 119, 0.15);
+      background: linear-gradient(180deg, #fffdfa 0%, #f2eadc 100%);
+      border: 1px solid rgba(192, 161, 117, 0.15);
     }
 
-    .side-left,
-    .side-right,
-    .bottom-fold {
+    .env-left,
+    .env-right,
+    .env-bottom {
       position: absolute;
     }
 
-    .side-left,
-    .side-right {
+    .env-left,
+    .env-right {
       top: 0;
       width: 51%;
       height: 100%;
-      background: linear-gradient(180deg, #fefcf8 0%, #f0e7d9 100%);
+      background: linear-gradient(180deg, #fefcf8 0%, #f0e8db 100%);
       z-index: 1;
     }
 
-    .side-left {
+    .env-left {
       left: 0;
       clip-path: polygon(0 0, 100% 50%, 0 100%);
     }
 
-    .side-right {
+    .env-right {
       right: 0;
       clip-path: polygon(100% 0, 0 50%, 100% 100%);
     }
 
-    .bottom-fold {
+    .env-bottom {
       left: 0;
       right: 0;
       bottom: 0;
       height: 72%;
-      z-index: 2;
-      background: linear-gradient(180deg, #fcfaf5 0%, #ede2d1 100%);
+      background: linear-gradient(180deg, #fcfaf5 0%, #eee3d2 100%);
       clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%);
-      border-top: 1px solid rgba(189, 160, 119, 0.12);
+      border-top: 1px solid rgba(192, 161, 117, 0.12);
+      z-index: 2;
     }
 
-    .top-flap {
+    .env-flap {
       position: absolute;
       left: 0;
       right: 0;
       top: 0;
       height: 58%;
-      z-index: 6;
-      background: linear-gradient(180deg, #fffdfa 0%, #f2e9db 100%);
+      background: linear-gradient(180deg, #fffdfa 0%, #f3eadc 100%);
       clip-path: polygon(0 0, 100% 0, 50% 100%);
       transform-origin: top center;
-      transition: transform 1.05s ease;
+      transition: transform 1s ease;
+      z-index: 6;
       backface-visibility: hidden;
-      box-shadow: inset 0 -1px 0 rgba(189, 160, 119, 0.12);
     }
 
     .wax {
@@ -279,16 +219,14 @@
       top: 50%;
       width: 82px;
       height: 82px;
-      transform: translate(-50%, -2%);
+      transform: translate(-50%, -4%);
       border-radius: 50%;
       z-index: 8;
       cursor: pointer;
-      user-select: none;
       display: flex;
       justify-content: center;
       align-items: center;
-      background:
-        radial-gradient(circle at 30% 30%, #e0c1a2 0%, #c59367 28%, #986440 70%, #734726 100%);
+      background: radial-gradient(circle at 30% 30%, #e1c1a0 0%, #c69367 28%, #986441 70%, #734726 100%);
       box-shadow:
         0 12px 24px rgba(86, 54, 27, 0.22),
         inset 0 3px 6px rgba(255,255,255,0.24),
@@ -296,13 +234,14 @@
       transition:
         opacity 0.35s ease,
         transform 0.35s ease;
+      user-select: none;
     }
 
     .wax::before {
       content: "H L";
       font-family: 'Great Vibes', cursive;
-      font-size: 31px;
-      color: rgba(253, 245, 236, 0.96);
+      font-size: 30px;
+      color: rgba(255, 247, 238, 0.96);
       letter-spacing: 2px;
       transform: translateY(-2px);
     }
@@ -310,51 +249,51 @@
     .hint {
       position: absolute;
       left: 50%;
-      bottom: 62px;
+      bottom: 95px;
       transform: translateX(-50%);
       width: 100%;
       text-align: center;
-      font-size: 21px;
-      color: rgba(130, 101, 69, 0.75);
+      font-size: 22px;
+      color: rgba(130, 101, 69, 0.72);
       animation: pulse 1.8s infinite;
     }
 
     @keyframes pulse {
-      0%, 100% { opacity: 0.38; }
+      0%, 100% { opacity: 0.4; }
       50% { opacity: 1; }
     }
 
-    /* OPEN STATE */
-    .opened .top-flap {
+    /* OPEN */
+    .opened .env-flap {
       transform: rotateX(180deg);
     }
 
     .opened .wax {
       opacity: 0;
       pointer-events: none;
-      transform: translate(-50%, -2%) scale(0.82);
+      transform: translate(-50%, -4%) scale(0.82);
     }
 
     .opened .card {
-      transform: translateX(-50%) translateY(-35px);
       opacity: 1;
+      transform: translateX(-50%) translateY(-30px);
     }
 
     @media (max-width: 480px) {
-      .scene {
-        height: 720px;
-      }
-
       .card {
         height: 500px;
       }
 
       .names {
-        font-size: 41px;
+        font-size: 40px;
       }
 
       .message {
         font-size: 22px;
+      }
+
+      .hint {
+        font-size: 20px;
       }
     }
   </style>
@@ -372,31 +311,16 @@
             <div class="arc a3"></div>
             <div class="arc a4"></div>
 
-            <div class="drop" style="left:8%; height:76px;"></div>
-            <div class="drop" style="left:16%; height:86px;"></div>
-            <div class="drop" style="left:24%; height:96px;"></div>
-            <div class="drop" style="left:32%; height:106px;"></div>
-            <div class="drop" style="left:40%; height:116px;"></div>
-            <div class="drop" style="left:60%; height:116px;"></div>
-            <div class="drop" style="left:68%; height:106px;"></div>
-            <div class="drop" style="left:76%; height:96px;"></div>
-            <div class="drop" style="left:84%; height:86px;"></div>
-            <div class="drop" style="left:92%; height:76px;"></div>
-          </div>
-
-          <div class="chandelier">
-            <div class="chain"></div>
-            <div class="ring1"></div>
-            <div class="ring2"></div>
-            <div class="ring3"></div>
-
-            <div class="crystal" style="left:20%; height:26px;"></div>
-            <div class="crystal" style="left:30%; height:36px;"></div>
-            <div class="crystal" style="left:40%; height:46px;"></div>
-            <div class="crystal" style="left:50%; height:56px;"></div>
-            <div class="crystal" style="left:60%; height:46px;"></div>
-            <div class="crystal" style="left:70%; height:36px;"></div>
-            <div class="crystal" style="left:80%; height:26px;"></div>
+            <div class="drop" style="left:8%; height:74px;"></div>
+            <div class="drop" style="left:16%; height:84px;"></div>
+            <div class="drop" style="left:24%; height:94px;"></div>
+            <div class="drop" style="left:32%; height:104px;"></div>
+            <div class="drop" style="left:40%; height:114px;"></div>
+            <div class="drop" style="left:60%; height:114px;"></div>
+            <div class="drop" style="left:68%; height:104px;"></div>
+            <div class="drop" style="left:76%; height:94px;"></div>
+            <div class="drop" style="left:84%; height:84px;"></div>
+            <div class="drop" style="left:92%; height:74px;"></div>
           </div>
 
           <div class="title">WE ARE CELEBRATING</div>
@@ -411,11 +335,11 @@
       </div>
 
       <div class="envelope">
-        <div class="envelope-base">
-          <div class="side-left"></div>
-          <div class="side-right"></div>
-          <div class="bottom-fold"></div>
-          <div class="top-flap"></div>
+        <div class="env-base">
+          <div class="env-left"></div>
+          <div class="env-right"></div>
+          <div class="env-bottom"></div>
+          <div class="env-flap"></div>
           <div class="wax" id="wax"></div>
         </div>
       </div>
