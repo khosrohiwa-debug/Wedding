@@ -1,147 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiwa & Lolav Invitation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-<style>
-body {
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#111;
-  font-family:'Playfair Display', serif;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at center, #111 0%, #070707 75%);
+      font-family: 'Playfair Display', serif;
+      overflow: hidden;
+      padding: 20px;
+    }
 
-/* ENVELOPE */
-.envelope {
-  width:320px;
-  height:220px;
-  position:relative;
-  cursor:pointer;
-}
+    .scene {
+      position: relative;
+      width: 360px;
+      height: 560px;
+    }
 
-/* RED BASE */
-.base {
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(145deg,#7a0d12,#b1121b);
-  border-radius:8px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.5);
-}
+    .shadow-wrap {
+      position: absolute;
+      left: 50%;
+      bottom: 80px;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 300px;
+      border-radius: 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+    }
 
-/* SIDE FOLDS */
-.left, .right {
-  position:absolute;
-  width:50%;
-  height:100%;
-  top:0;
-  background:linear-gradient(145deg,#8e1117,#c4161f);
-}
+    /* CARD SLOT: this hides the card until it rises */
+    .slot {
+      position: absolute;
+      left: 50%;
+      bottom: 160px;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 280px;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-.left {
-  left:0;
-  clip-path:polygon(0 0,100% 50%,0 100%);
-}
+    .card {
+      position: absolute;
+      left: 50%;
+      bottom: -230px;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 390px;
+      background: #faf8f6;
+      border-radius: 0;
+      box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+      transition: bottom 1.15s cubic-bezier(.22,1,.22,1);
+      overflow: hidden;
+    }
 
-.right {
-  right:0;
-  clip-path:polygon(100% 0,0 50%,100% 100%);
-}
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 28px 22px 24px;
+      text-align: center;
+      background:
+        linear-gradient(180deg, #fcfbfa 0%, #f6f3ef 100%);
+    }
 
-/* TOP FLAP */
-.flap {
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(145deg,#9e141b,#d61a25);
-  clip-path:polygon(0 0,100% 0,50% 50%);
-  transform-origin:top;
-  transition:1s;
-  z-index:5;
-}
+    .title {
+      margin-top: 24px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #222;
+      font-weight: 600;
+    }
 
-/* WAX */
-.wax {
-  position:absolute;
-  width:70px;
-  height:70px;
-  background:radial-gradient(circle,#5c0b0f,#2e0507);
-  border-radius:50%;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-20%);
-  z-index:6;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:white;
-  font-family:'Great Vibes';
-  font-size:28px;
-}
+    .names {
+      margin-top: 18px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      line-height: 1.12;
+      color: #8b0f18;
+    }
 
-/* CARD */
-.card {
-  position:absolute;
-  width:90%;
-  height:180px;
-  background:#fff;
-  left:50%;
-  bottom:0;
-  transform:translateX(-50%) translateY(140px);
-  transition:1s;
-  text-align:center;
-  padding:20px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.3);
-}
+    .amp {
+      font-family: 'Great Vibes', cursive;
+      font-size: 34px;
+      color: #8b0f18;
+      margin: 6px 0;
+    }
 
-/* TEXT */
-.names {
-  font-family:'Great Vibes';
-  font-size:28px;
-  color:#7a0d12;
-  margin:10px 0;
-}
+    .date {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #222;
+      font-weight: 600;
+    }
 
-/* OPEN */
-.open .flap {
-  transform:rotateX(180deg);
-}
+    .message {
+      margin-top: 20px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #444;
+    }
 
-.open .card {
-  transform:translateX(-50%) translateY(-60px);
-}
-</style>
+    /* Envelope */
+    .envelope {
+      position: absolute;
+      left: 50%;
+      bottom: 80px;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 230px;
+      z-index: 5;
+      cursor: pointer;
+    }
+
+    .env-body {
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #7c0f16 0%, #b30f1d 45%, #8d0f18 100%);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 18px 45px rgba(0,0,0,0.45);
+    }
+
+    .env-left, .env-right, .env-bottom {
+      position: absolute;
+    }
+
+    .env-left, .env-right {
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(145deg, #930f19 0%, #c61220 100%);
+      opacity: 0.95;
+    }
+
+    .env-left {
+      left: 0;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+
+    .env-right {
+      right: 0;
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    }
+
+    .env-bottom {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 62%;
+      background: linear-gradient(145deg, #7d0d14 0%, #a30f19 100%);
+      clip-path: polygon(0 0, 50% 60%, 100% 0, 100% 100%, 0 100%);
+      z-index: 2;
+    }
+
+    .env-flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #a9111d 0%, #d31624 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 58%);
+      transform-origin: top center;
+      transition: transform 0.95s ease;
+      z-index: 6;
+      box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
+    }
+
+    .initials {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 44px;
+      color: rgba(255,255,255,0.88);
+      z-index: 7;
+      pointer-events: none;
+    }
+
+    .wax {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -18%);
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%, #7b0b13 0%, #5a070d 50%, #300307 100%);
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.35),
+        inset 0 2px 6px rgba(255,255,255,0.08),
+        inset 0 -4px 6px rgba(0,0,0,0.35);
+      z-index: 8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .wax span {
+      font-family: 'Great Vibes', cursive;
+      font-size: 30px;
+      color: rgba(255,255,255,0.95);
+      transform: translateY(-2px);
+    }
+
+    .hint {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.45);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .opened .env-flap {
+      transform: rotateX(180deg);
+    }
+
+    .opened .wax {
+      opacity: 0;
+    }
+
+    .opened .card {
+      bottom: -40px;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="scene" id="scene">
+    <div class="shadow-wrap"></div>
 
-<div class="envelope" onclick="openIt(this)">
-  <div class="base"></div>
-  <div class="left"></div>
-  <div class="right"></div>
-  <div class="flap"></div>
+    <div class="slot">
+      <div class="card">
+        <div class="card-inner">
+          <div class="title">WE ARE CELEBRATING</div>
+          <div class="names">Hiwa Khosro</div>
+          <div class="amp">&</div>
+          <div class="names">Lolav Ahmed</div>
+          <div class="date">24 April 2026</div>
+          <div class="message">
+            Thank you for coming<br>
+            you made this day more beautiful<br>
+            just by being part of it
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <div class="wax">HL</div>
+    <div class="envelope" id="envelope">
+      <div class="env-body">
+        <div class="env-left"></div>
+        <div class="env-right"></div>
+        <div class="env-bottom"></div>
+        <div class="initials">HL</div>
+        <div class="env-flap"></div>
+        <div class="wax" id="wax"><span>HL</span></div>
+      </div>
+    </div>
 
-  <div class="card">
-    <div>WE ARE CELEBRATING</div>
-    <div class="names">Hiwa Khosro<br>&<br>Lolav Ahmed</div>
-    <div>24 April 2026</div>
+    <div class="hint">tap the wax seal</div>
   </div>
-</div>
 
-<script>
-function openIt(el){
-  el.classList.toggle("open");
-}
-</script>
+  <script>
+    const scene = document.getElementById('scene');
+    const wax = document.getElementById('wax');
 
+    wax.addEventListener('click', function (e) {
+      e.stopPropagation();
+      scene.classList.add('opened');
+    });
+  </script>
 </body>
 </html>
