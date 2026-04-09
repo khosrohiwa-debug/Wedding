@@ -1,141 +1,438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hiwa & Lolav Invitation</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-<style>
-body {
-  margin: 0;
-  background: #f7f5f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: 'Playfair Display', serif;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-/* Envelope */
-.envelope {
-  width: 300px;
-  height: 200px;
-  background: #fff;
-  position: relative;
-  border-radius: 6px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  cursor: pointer;
-  overflow: hidden;
-}
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at top, #f8f4ec 0%, #efe8dd 45%, #e8dece 100%);
+      font-family: 'Cormorant Garamond', serif;
+      overflow: hidden;
+      padding: 20px;
+    }
 
-/* Flap */
-.flap {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  clip-path: polygon(0 0, 100% 0, 50% 60%);
-  transform-origin: top;
-  transition: 0.8s ease;
-  z-index: 2;
-}
+    .scene {
+      width: min(92vw, 430px);
+      height: min(82vh, 760px);
+      position: relative;
+      perspective: 2000px;
+    }
 
-/* Wax seal */
-.wax {
-  width: 60px;
-  height: 60px;
-  background: #a67c52;
-  border-radius: 50%;
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 20px;
-}
+    .envelope-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-/* Card */
-.card {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  top: 100%;
-  transition: 1s ease;
-  text-align: center;
-  padding: 30px 20px;
-  box-sizing: border-box;
-}
+    .envelope {
+      position: relative;
+      width: 100%;
+      max-width: 390px;
+      height: 260px;
+      transform-style: preserve-3d;
+    }
 
-/* Open animation */
-.open .flap {
-  transform: rotateX(180deg);
-}
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #fdfbf7 0%, #f4eee4 100%);
+      border-radius: 10px;
+      box-shadow: 0 25px 60px rgba(72, 49, 18, 0.18);
+      overflow: hidden;
+    }
 
-.open .card {
-  top: 0;
-}
+    .envelope-back::before,
+    .envelope-back::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 50.5%;
+      height: 100%;
+      background: linear-gradient(180deg, #fefcf8 0%, #f1eade 100%);
+      z-index: 2;
+    }
 
-/* Text styling */
-.title {
-  letter-spacing: 2px;
-  font-size: 14px;
-  color: #777;
-}
+    .envelope-back::before {
+      left: 0;
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      border-right: 1px solid rgba(160, 138, 104, 0.15);
+    }
 
-.names {
-  font-family: 'Great Vibes', cursive;
-  font-size: 32px;
-  margin: 15px 0;
-  color: #a67c52;
-}
+    .envelope-back::after {
+      right: 0;
+      clip-path: polygon(100% 0, 0 50%, 100% 100%);
+      border-left: 1px solid rgba(160, 138, 104, 0.15);
+    }
 
-.date {
-  margin-bottom: 15px;
-  color: #555;
-}
+    .envelope-bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 72%;
+      background: linear-gradient(180deg, #fcfaf6 0%, #efe6d8 100%);
+      clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
+      z-index: 3;
+      border-top: 1px solid rgba(160, 138, 104, 0.15);
+    }
 
-.message {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
-}
-</style>
+    .flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 58%;
+      background: linear-gradient(180deg, #fffdfa 0%, #f1e8db 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 1.2s ease;
+      z-index: 6;
+      box-shadow: inset 0 -1px 0 rgba(160, 138, 104, 0.12);
+      backface-visibility: hidden;
+    }
+
+    .wax {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 76px;
+      height: 76px;
+      transform: translate(-50%, -8%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #d8b28d 0%, #b9865b 28%, #8e5b37 72%, #6c4328 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #f7e7d7;
+      font-size: 22px;
+      font-family: 'Great Vibes', cursive;
+      z-index: 8;
+      box-shadow:
+        0 10px 18px rgba(72, 34, 16, 0.22),
+        inset 0 2px 5px rgba(255,255,255,0.28),
+        inset 0 -4px 6px rgba(0,0,0,0.18);
+      cursor: pointer;
+      transition: transform 0.35s ease, opacity 0.5s ease;
+      user-select: none;
+    }
+
+    .wax::before {
+      content: "H ♥ L";
+      letter-spacing: 1px;
+      transform: translateY(-1px);
+    }
+
+    .card {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      width: 86%;
+      height: 510px;
+      transform: translateX(-50%) translateY(330px);
+      background: linear-gradient(180deg, #fffefb 0%, #f8f4ec 100%);
+      border-radius: 12px;
+      z-index: 1;
+      box-shadow: 0 22px 45px rgba(56, 38, 18, 0.12);
+      transition: transform 1.5s cubic-bezier(.22,1,.22,1);
+      overflow: hidden;
+      border: 1px solid rgba(185, 157, 120, 0.18);
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 56px 26px 34px;
+      text-align: center;
+      color: #8e6b45;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0) 36%),
+        linear-gradient(180deg, #fffefb 0%, #f8f4ec 100%);
+    }
+
+    .top-ornament {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 88%;
+      height: 150px;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    .line {
+      position: absolute;
+      top: 0;
+      border-top: 1.4px solid rgba(190, 157, 111, 0.9);
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .line.l1 { width: 95%; height: 60px; }
+    .line.l2 { width: 82%; height: 78px; top: 8px; }
+    .line.l3 { width: 68%; height: 94px; top: 16px; }
+    .line.l4 { width: 54%; height: 108px; top: 24px; }
+
+    .drop {
+      position: absolute;
+      top: 12px;
+      width: 1px;
+      background: rgba(190, 157, 111, 0.85);
+      transform-origin: top;
+    }
+
+    .drop::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: rgba(190, 157, 111, 0.95);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.35);
+    }
+
+    .chandelier {
+      position: absolute;
+      top: 34px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 110px;
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    .chain {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 1px;
+      height: 18px;
+      transform: translateX(-50%);
+      background: rgba(190, 157, 111, 0.95);
+    }
+
+    .ring1, .ring2, .ring3 {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 1.3px solid rgba(190, 157, 111, 0.95);
+      border-radius: 50%;
+    }
+
+    .ring1 { top: 16px; width: 48px; height: 24px; }
+    .ring2 { top: 32px; width: 72px; height: 30px; }
+    .ring3 { top: 54px; width: 94px; height: 34px; }
+
+    .crystal {
+      position: absolute;
+      width: 1px;
+      background: rgba(190, 157, 111, 0.85);
+      top: 58px;
+    }
+
+    .crystal::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 5px;
+      height: 10px;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(198,173,132,0.9));
+      clip-path: polygon(50% 0%, 100% 40%, 70% 100%, 30% 100%, 0% 40%);
+      box-shadow: 0 1px 4px rgba(160, 138, 104, 0.25);
+    }
+
+    .title {
+      margin-top: 128px;
+      letter-spacing: 4px;
+      font-size: 19px;
+      font-weight: 500;
+      color: #9e7c56;
+    }
+
+    .names {
+      margin-top: 18px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 46px;
+      line-height: 1.12;
+      color: #846240;
+    }
+
+    .date {
+      margin-top: 14px;
+      font-size: 22px;
+      letter-spacing: 1.2px;
+      color: #a1815d;
+    }
+
+    .message {
+      margin: 34px auto 0;
+      max-width: 84%;
+      font-size: 25px;
+      line-height: 1.35;
+      color: #9a7956;
+    }
+
+    .hint {
+      position: absolute;
+      bottom: -54px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 22px;
+      color: rgba(120, 94, 64, 0.7);
+      text-align: center;
+      width: 100%;
+      animation: pulse 1.7s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 1; }
+    }
+
+    .opened .flap {
+      transform: rotateX(180deg);
+    }
+
+    .opened .wax {
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -8%) scale(0.82);
+    }
+
+    .opened .card {
+      transform: translateX(-50%) translateY(-78px);
+      z-index: 7;
+    }
+
+    @media (max-width: 480px) {
+      .scene {
+        height: 720px;
+      }
+
+      .envelope {
+        height: 235px;
+      }
+
+      .card {
+        height: 490px;
+      }
+
+      .title {
+        font-size: 17px;
+      }
+
+      .names {
+        font-size: 41px;
+      }
+
+      .date {
+        font-size: 20px;
+      }
+
+      .message {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="envelope" onclick="openInvite(this)">
-  <div class="flap"></div>
-  <div class="wax">♥</div>
+  <div class="scene">
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="card">
+          <div class="card-inner">
+            <div class="top-ornament">
+              <div class="line l1"></div>
+              <div class="line l2"></div>
+              <div class="line l3"></div>
+              <div class="line l4"></div>
 
-  <div class="card">
-    <div class="title">WE ARE CELEBRATING</div>
+              <div class="drop" style="left:8%; height:78px;"></div>
+              <div class="drop" style="left:16%; height:88px;"></div>
+              <div class="drop" style="left:24%; height:98px;"></div>
+              <div class="drop" style="left:32%; height:108px;"></div>
+              <div class="drop" style="left:40%; height:118px;"></div>
+              <div class="drop" style="left:60%; height:118px;"></div>
+              <div class="drop" style="left:68%; height:108px;"></div>
+              <div class="drop" style="left:76%; height:98px;"></div>
+              <div class="drop" style="left:84%; height:88px;"></div>
+              <div class="drop" style="left:92%; height:78px;"></div>
+            </div>
 
-    <div class="names">
-      Hiwa Khosro<br>&<br>Lolav Ahmed
+            <div class="chandelier">
+              <div class="chain"></div>
+              <div class="ring1"></div>
+              <div class="ring2"></div>
+              <div class="ring3"></div>
+
+              <div class="crystal" style="left:20%; height:28px;"></div>
+              <div class="crystal" style="left:30%; height:38px;"></div>
+              <div class="crystal" style="left:40%; height:48px;"></div>
+              <div class="crystal" style="left:50%; height:58px;"></div>
+              <div class="crystal" style="left:60%; height:48px;"></div>
+              <div class="crystal" style="left:70%; height:38px;"></div>
+              <div class="crystal" style="left:80%; height:28px;"></div>
+            </div>
+
+            <div class="title">WE ARE CELEBRATING</div>
+            <div class="names">Hiwa Khosro<br>&<br>Lolav Ahmed</div>
+            <div class="date">24 / 04 / 2026</div>
+            <div class="message">
+              Thank you for coming<br>
+              you made this day more beautiful<br>
+              just by being part of it
+            </div>
+          </div>
+        </div>
+
+        <div class="envelope-back"></div>
+        <div class="envelope-bottom"></div>
+        <div class="flap"></div>
+        <div class="wax" id="wax"></div>
+      </div>
     </div>
 
-    <div class="date">April 24, 2026</div>
-
-    <div class="message">
-      Thank you for coming<br>
-      you made this day more beautiful just by being part of it
-    </div>
+    <div class="hint">tap the wax seal</div>
   </div>
-</div>
 
-<script>
-function openInvite(el) {
-  el.classList.toggle("open");
-}
-</script>
+  <script>
+    const wax = document.getElementById('wax');
+    const envelope = document.getElementById('envelope');
+
+    wax.addEventListener('click', function(e) {
+      e.stopPropagation();
+      envelope.classList.add('opened');
+    });
+  </script>
 
 </body>
 </html>
